@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/HarborControl/.vs/HarborControl
+/HarborControl/HarborControl/bin/Debug/netcoreapp3.1
+/HarborControl/HarborControl/obj
+/HarborControl/HarborControl.Core/obj
+/HarborControl/HarborControl.Interfaces/obj
