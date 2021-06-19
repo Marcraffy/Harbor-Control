@@ -1,4 +1,4 @@
-﻿namespace HarborControl.Interfacers.Vessels
+﻿namespace HarborControl.Interfaces.Vessels
 {
     public interface IVessel
     {

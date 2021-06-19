@@ -8,3 +8,7 @@
 /HarborControl/HarborControl/obj
 /HarborControl/HarborControl.Core/obj
 /HarborControl/HarborControl.Interfaces/obj
+/HarborControl/.vs/HarborControl.Tests
+/HarborControl/HarborControl.Core/bin/Debug/net5.0
+/HarborControl/HarborControl.Interfaces/bin/Debug/net5.0
+/HarborControl/HarborControl.Tests/obj

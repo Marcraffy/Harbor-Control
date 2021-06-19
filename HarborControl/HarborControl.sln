@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarborControl", "HarborControl\HarborControl.csproj", "{5B837BD1-C916-4BAE-8791-D0FF6B6C6226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl", "HarborControl\HarborControl.csproj", "{5B837BD1-C916-4BAE-8791-D0FF6B6C6226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarborControl.Core", "HarborControl.Core\HarborControl.Core.csproj", "{51C3C6D9-735D-457E-9C71-523E343162DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl.Interfaces", "HarborControl.Interfaces\HarborControl.Interfaces.csproj", "{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarborControl.Interfaces", "HarborControl.Interfaces\HarborControl.Interfaces.csproj", "{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B353D480-84FF-4953-8097-A161EC245875}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{74C05B8D-05E8-4A38-9C36-1F2A0F6E8073}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl.Tests", "HarborControl.Tests\HarborControl.Tests.csproj", "{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl.Core", "HarborControl.Core\HarborControl.Core.csproj", "{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +25,27 @@ Global
 		{5B837BD1-C916-4BAE-8791-D0FF6B6C6226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B837BD1-C916-4BAE-8791-D0FF6B6C6226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B837BD1-C916-4BAE-8791-D0FF6B6C6226}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51C3C6D9-735D-457E-9C71-523E343162DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51C3C6D9-735D-457E-9C71-523E343162DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51C3C6D9-735D-457E-9C71-523E343162DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51C3C6D9-735D-457E-9C71-523E343162DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B837BD1-C916-4BAE-8791-D0FF6B6C6226} = {B353D480-84FF-4953-8097-A161EC245875}
+		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016} = {B353D480-84FF-4953-8097-A161EC245875}
+		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21} = {74C05B8D-05E8-4A38-9C36-1F2A0F6E8073}
+		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A} = {B353D480-84FF-4953-8097-A161EC245875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8D28502-BC3D-4FC8-88A4-3E437FEF2AF2}

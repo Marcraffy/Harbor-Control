@@ -1,4 +1,4 @@
-﻿using HarborControl.Interfacers.Vessels;
+﻿using HarborControl.Interfaces.Vessels;
 
 namespace HarborControl.Core.Vessels
 {

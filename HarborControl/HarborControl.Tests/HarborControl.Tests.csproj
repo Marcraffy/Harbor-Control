@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HarborControl.Interfaces\HarborControl.Interfaces.csproj" />
-  </ItemGroup>
-
 </Project>
