@@ -23,7 +23,7 @@ namespace HarborControl.Traffic
                 Thread.Sleep(waitTime);
 
                 //Randomly select between arrival and departure
-                if(random.Next() % 3 != 0)
+                if(random.Next() % 4 != 0)
                 {
                     var arrivingVessel = GetShipName(random);
                     if (vessels.Any(name => string.Equals(name, arrivingVessel, StringComparison.OrdinalIgnoreCase)))
@@ -31,7 +31,7 @@ namespace HarborControl.Traffic
                         continue;
                     }
 
-                    var locations = new Location[] { Location.Harbor, Location.Perimeter };
+                    var locations = new Location[] { Location.Perimeter };
                     var types = Enum.GetValues(typeof(VesselType)) as VesselType[];
 
                     var location = locations[random.Next() % locations.Length];
