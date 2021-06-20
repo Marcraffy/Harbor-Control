@@ -19,10 +19,10 @@ namespace HarborControl.Controllers
         }
 
         [HttpGet]
-        public float Get()
+        public ActionResult<float> Get()
         {
             logger.LogInformation($"Windspeed requested");
-            return weatherService.WindSpeed;
+            return new ActionResult<float>(weatherService.WindSpeed);
         }
     }
 }

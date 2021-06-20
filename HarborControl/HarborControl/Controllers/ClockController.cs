@@ -20,17 +20,23 @@ namespace HarborControl.Controllers
         }
 
         [HttpGet]
-        public DateTime Get()
+        public ActionResult<DateTime> Get()
         {
             logger.LogInformation($"Time requested");
-            return clockService.CurrentTime;
+            return new ActionResult<DateTime>(clockService.CurrentTime);
         }
 
         [HttpPost]
-        public void Post([FromQuery] int multiplier)
+        public ActionResult Post([FromQuery] int multiplier)
         {
+            if (multiplier < 0 || multiplier > 16)
+            {
+                return new BadRequestResult();
+            }
+
             clockService.Multiplier = multiplier;
             logger.LogInformation($"Multiplier set to {multiplier}");
+            return new OkResult();
         }
     }
 }

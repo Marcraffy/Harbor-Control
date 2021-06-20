@@ -13,14 +13,14 @@ namespace HarborControl.Weather
         private readonly HttpClient client;
         private readonly IConfiguration configuration;
 
-        private string Query => $"weather?q={configuration["OpenWeather.City"]}&appid={configuration["OpenWeather.Key"]}";
+        private string Query => $"weather?q={configuration["OpenWeather:City"]}&appid={configuration["OpenWeather:Key"]}";
 
         public WeatherService(IConfiguration configuration)
         {
             this.configuration = configuration;
             client = new HttpClient
             {
-                BaseAddress = new Uri(configuration["OpenWeather.Endpoint"])
+                BaseAddress = new Uri(configuration["OpenWeather:Endpoint"])
             };
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -39,7 +39,7 @@ namespace HarborControl.Weather
             var response = await client.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
             var contentObject = JsonConvert.DeserializeObject<dynamic>(content);
-            float windspeed = Convert.ToDouble(contentObject["wind"]["speed"]);
+            var windspeed = Convert.ToDouble(contentObject.wind.speed);
             return (float)(windspeed * 3.6);
         }
 
