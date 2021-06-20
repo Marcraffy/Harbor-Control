@@ -1,10 +1,11 @@
-﻿using HarborControl.Interfaces.Vessels;
+﻿using HarborControl.Interfaces.Enums;
+using HarborControl.Interfaces.Vessels;
 
 namespace HarborControl.Core.Vessels
 {
-    public class Speedboat : IVessel
+    public class Speedboat : BaseVessel, IVessel
     {
-        public int Speed => 30;
-
+        public new int Speed => 30;
+        public new VesselType Type => VesselType.Cargoship;
     }
 }

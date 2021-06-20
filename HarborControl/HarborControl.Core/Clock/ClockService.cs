@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HarborControl.Interfaces.Services;
+using System;
 
 namespace HarborControl.Core.Clock
 {
-    class ClockService
+    public class ClockService : BaseService, IClockService
     {
+        public DateTime CurrentTime => DateTime.Now;
     }
 }
