@@ -2,9 +2,9 @@
 
 namespace HarborControl.Core.Exceptions
 {
-    public class ControlException : Exception
+    public class ClockException : Exception
     {
-        public ControlException(string message) : base(message)
+        public ClockException(string message) : base(message)
         {
         }
     }
