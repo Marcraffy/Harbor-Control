@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl.Tests", "Harb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarborControl.Core", "HarborControl.Core\HarborControl.Core.csproj", "{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarborControl.Weather", "HarborControl.Weather\HarborControl.Weather.csproj", "{0200E672-E06D-46DD-A75D-8E47AA135972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0200E672-E06D-46DD-A75D-8E47AA135972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0200E672-E06D-46DD-A75D-8E47AA135972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0200E672-E06D-46DD-A75D-8E47AA135972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0200E672-E06D-46DD-A75D-8E47AA135972}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{5F9E4281-E36C-4D3D-BA3D-6F5258CCA016} = {B353D480-84FF-4953-8097-A161EC245875}
 		{6F21C6B3-61AB-4ECF-B0D1-680875FF7D21} = {74C05B8D-05E8-4A38-9C36-1F2A0F6E8073}
 		{7C8B530F-9E64-4778-9F71-FA40CE2BB54A} = {B353D480-84FF-4953-8097-A161EC245875}
+		{0200E672-E06D-46DD-A75D-8E47AA135972} = {B353D480-84FF-4953-8097-A161EC245875}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8D28502-BC3D-4FC8-88A4-3E437FEF2AF2}
