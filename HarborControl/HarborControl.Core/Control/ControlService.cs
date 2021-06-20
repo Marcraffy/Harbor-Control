@@ -20,6 +20,7 @@ namespace HarborControl.Core.Control
         {
             this.clockService = clockService;
             this.weatherService = weatherService;
+            vessels = new Queue<IVessel>();
         }
 
         public IList<IVessel> VesselsAtPerimeter => vessels.Where(vessel => vessel.Location == Location.Perimeter).ToList();
