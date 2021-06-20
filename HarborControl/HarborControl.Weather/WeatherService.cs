@@ -1,4 +1,6 @@
-﻿using HarborControl.Interfaces.Services;
+﻿using HarborControl.Interfaces.Configuration;
+using HarborControl.Interfaces.Services;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,16 +11,20 @@ namespace HarborControl.Weather
     public class WeatherService : IWeatherService
     {
         private readonly HttpClient client;
+        private readonly IConfiguration configuration;
         private const string key = "5301fa5fad04317c0223308595bcee00";
-        private const string endpoint = "api.openweathermap.org/data/2.5/";
+        private const string endpoint = "https://api.openweathermap.org/data/2.5/";
         private const string city = "Durban, ZA";
 
-        private string query => $"weather?q={city}&appid={key}";
+        private string Query => $"weather?q={configuration.OpenWeatherCity}&appid={configuration.OpenWeatherKey}";
 
-        public WeatherService()
+        public WeatherService(IConfiguration configuration)
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(endpoint);
+            this.configuration = configuration;
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(configuration.OpenWeatherEndpoint)
+            };
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         
@@ -32,9 +38,12 @@ namespace HarborControl.Weather
 
         private async Task<float> QueryWindSpeedAsync()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, query);
+            var request = new HttpRequestMessage(HttpMethod.Get, Query);
             var response = await client.SendAsync(request);
-            var windspeed = response.
+            var content = await response.Content.ReadAsStringAsync();
+            var contentObject = JsonConvert.DeserializeObject<dynamic>(content);
+            float windspeed = Convert.ToDouble(contentObject["wind"]["speed"]);
+            return (float)(windspeed * 3.6);
         }
 
         public void Dispose()
