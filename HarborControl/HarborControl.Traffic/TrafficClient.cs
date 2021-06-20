@@ -9,7 +9,7 @@ namespace HarborControl.Traffic
     public class TrafficClient : IDisposable
     {
         private readonly HttpClient client;
-        private const string endpoint = "https://localhost:?????/";
+        private const string endpoint = "https://localhost:?????/api/";
 
         public TrafficClient()
         {

@@ -1,5 +1,5 @@
-﻿using HarborControl.Interfaces.Configuration;
-using HarborControl.Interfaces.Services;
+﻿using HarborControl.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -12,18 +12,15 @@ namespace HarborControl.Weather
     {
         private readonly HttpClient client;
         private readonly IConfiguration configuration;
-        private const string key = "5301fa5fad04317c0223308595bcee00";
-        private const string endpoint = "https://api.openweathermap.org/data/2.5/";
-        private const string city = "Durban, ZA";
 
-        private string Query => $"weather?q={configuration.OpenWeatherCity}&appid={configuration.OpenWeatherKey}";
+        private string Query => $"weather?q={configuration["OpenWeather.City"]}&appid={configuration["OpenWeather.Key"]}";
 
         public WeatherService(IConfiguration configuration)
         {
             this.configuration = configuration;
             client = new HttpClient
             {
-                BaseAddress = new Uri(configuration.OpenWeatherEndpoint)
+                BaseAddress = new Uri(configuration["OpenWeather.Endpoint"])
             };
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
