@@ -1,17 +1,19 @@
 <template>
   <nav-menu></nav-menu>
-  <router-view />
+  <harbor-status />
 </template>
 
 <script>
-    import NavMenu from './components/NavMenu.vue'
+    import NavMenu from './components/NavMenu.vue';
+    import HarborStatus from './components/HarborStatus.vue';
 
-export default {
-  name: 'App',
-  components: {
-      NavMenu
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            NavMenu,
+            HarborStatus
+        }
+    }
 </script>
 
 <style>

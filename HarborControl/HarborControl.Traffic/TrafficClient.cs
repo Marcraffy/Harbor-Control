@@ -9,7 +9,7 @@ namespace HarborControl.Traffic
     public class TrafficClient : IDisposable
     {
         private readonly HttpClient client;
-        private const string endpoint = "https://localhost:?????/api/";
+        private const string endpoint = "http://localhost:50598/api/";
 
         public TrafficClient()
         {
@@ -20,9 +20,9 @@ namespace HarborControl.Traffic
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task SendVessalArrival(string name, Location location)
+        public async Task SendVessalArrivalAsync(string name, Location location, VesselType type)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"traffic?name={name}&location={location}");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"traffic?name={name}&location={location}&type={type}");
             var response = await client.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
@@ -31,7 +31,7 @@ namespace HarborControl.Traffic
             }
         }
 
-        public async Task SendVessalDeparture(string name)
+        public async Task SendVessalDepartureAsync(string name)
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, $"traffic?name={name}");
             var response = await client.SendAsync(request);

@@ -20,7 +20,7 @@
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\HarborControl.Core\HarborControl.Core.csproj" />
     <ProjectReference Include="..\HarborControl.Interfaces\HarborControl.Interfaces.csproj" />

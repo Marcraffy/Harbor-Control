@@ -155,15 +155,19 @@ namespace HarborControl.Core.Control
             }
 
             var newVesselQueue = new Queue<IVessel>(vessels.Count - 1);
-            foreach (var vessel in vessels)
+            do
             {
+                var vessel = vessels.Dequeue();
                 if (StringEquals(vessel.Name, name))
                 {
-                    vessels.Dequeue();
                     continue;
                 }
 
-                newVesselQueue.Enqueue(vessels.Dequeue());
+                newVesselQueue.Enqueue(vessel);
+            } while (vessels.Count != 0);
+            foreach (var vessel in newVesselQueue)
+            {
+                vessels.Enqueue(vessel);
             }
         }
 

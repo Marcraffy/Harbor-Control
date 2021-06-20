@@ -1,4 +1,5 @@
 ﻿using HarborControl.Interfaces.Services;
+using HarborControl.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,10 +21,15 @@ namespace HarborControl.Controllers
         }
 
         [HttpGet]
-        public ActionResult<DateTime> Get()
+        public ActionResult<Clock> Get()
         {
             logger.LogInformation($"Time requested");
-            return new ActionResult<DateTime>(clockService.CurrentTime);
+            return new ActionResult<Clock>(
+                new Clock {
+                    CurrentTime = clockService.CurrentTime,
+                    Multiplier = clockService.Multiplier
+                }
+            );
         }
 
         [HttpPost]
