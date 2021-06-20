@@ -44,29 +44,36 @@ namespace HarborControl.Core.Control
                 throw new ControlException("Vessel is already in queue");
             }
 
+            var isQueueEmpty = vessels.Count == 0;
+
+            var newLocation = isQueueEmpty ? Location.Transit : location;
             var direction = location == Location.Harbor ? Direction.ToPerimeter : Direction.ToHarbor;
+            var transitStartTime = isQueueEmpty ? clockService.CurrentTime : (DateTime?)null;
 
             IVessel vessel = type switch
             {
                 VesselType.Cargoship => new Cargoship { 
                     Name = name, 
                     Direction = direction, 
-                    Location = location,
-                    Arrival = clockService.CurrentTime 
+                    Location = newLocation,
+                    Arrival = clockService.CurrentTime,
+                    TransitStart = transitStartTime
                 },
                 VesselType.Sailboat => new Sailboat
                 {
                     Name = name,
                     Direction = direction,
-                    Location = location,
-                    Arrival = clockService.CurrentTime
+                    Location = newLocation,
+                    Arrival = clockService.CurrentTime,
+                    TransitStart = transitStartTime
                 },
                 VesselType.Speedboat => new Speedboat
                 {
                     Name = name,
                     Direction = direction,
-                    Location = location,
-                    Arrival = clockService.CurrentTime
+                    Location = newLocation,
+                    Arrival = clockService.CurrentTime,
+                    TransitStart = transitStartTime
                 },
                 _ => throw new ControlException("Vessel type not found")
             };
@@ -94,11 +101,7 @@ namespace HarborControl.Core.Control
                     break;
 
                 case Location.Transit:
-                    DequeueVessel(name);
-                    var nextVessel = vessels.Dequeue();
-                    nextVessel.Location = Location.Transit;
-                    nextVessel.TransitStart = clockService.CurrentTime;
-                    vessels.Enqueue(nextVessel);
+                    DequeueTransitVessel(name);
                     break;
 
                 case Location.Perimeter:
@@ -108,6 +111,39 @@ namespace HarborControl.Core.Control
                 default:
                     throw new ControlException("Location not found");
             }
+        }
+
+        private void DequeueTransitVessel(string name)
+        {
+            DequeueVessel(name);
+
+            if (vessels.Count == 0)
+            {
+                return;
+            }
+
+            if (vessels.Peek().Type == VesselType.Sailboat
+                && (weatherService.WindSpeed < 10f || weatherService.WindSpeed > 30f))
+            { 
+                var vessel = vessels.FirstOrDefault(vessel => vessel.Type != VesselType.Sailboat);
+                if (vessel == null)
+                {
+                    return;
+                }
+
+                DequeueVessel(vessel.Name);
+                SetTransitVessel(vessel);
+            }
+
+            SetTransitVessel(vessels.Dequeue());
+        }
+
+        private void SetTransitVessel(IVessel vessel)
+        {
+            vessel.Location = Location.Transit;
+            vessel.TransitStart = clockService.CurrentTime;
+
+            vessels.Enqueue(vessel);
         }
 
         private void DequeueVessel(string name)

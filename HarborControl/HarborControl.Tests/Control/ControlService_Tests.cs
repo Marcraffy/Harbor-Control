@@ -31,12 +31,14 @@ namespace HarborControl.Tests.Control
             controlService.VesselArrived(name, Location.Harbor, VesselType.Cargoship);
 
             //Assert
-            var testboat = controlService.VesselsAtHarbor.FirstOrDefault(vessel => vessel.Name == name);
+            var testboat = controlService.VesselInTransit;
 
             testboat.ShouldNotBeNull();
             testboat.Name.ShouldBe(name);
-            testboat.Location.ShouldBe(Location.Harbor);
+            testboat.Location.ShouldBe(Location.Transit);
             testboat.Direction.ShouldBe(Direction.ToPerimeter);
+            controlService.VesselsAtHarbor.Any().ShouldBeFalse();
+            controlService.VesselsAtPerimeter.Any().ShouldBeFalse();
         }
 
         [Fact]
