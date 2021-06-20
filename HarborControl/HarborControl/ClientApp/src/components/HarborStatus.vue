@@ -3,7 +3,7 @@
 
     <p v-if="!isLoaded"><em>Loading...</em></p>
 
-    <a class="container" v-if="isLoaded">
+    <div class="container" v-if="isLoaded">
         <table class='table' aria-labelledby="tableLabel">
             <thead>
                 <tr>
@@ -13,6 +13,9 @@
             <tbody>
                 <tr v-for="perimeterVessel of vesselsInPerimeter" v-bind:key="perimeterVessel.name">
                     <td>{{ perimeterVessel.name }}</td>
+                </tr>
+                <tr>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
@@ -26,6 +29,9 @@
                 <tr v-if="vesselInTransit">
                     <td>{{ vesselInTransit.name }}</td>
                 </tr>
+                <tr>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
         <table class='table' aria-labelledby="tableLabel">
@@ -38,9 +44,12 @@
                 <tr v-for="harborVessel of vesselsInHarbor" v-bind:key="harborVessel.name">
                     <td>{{ harborVessel.name }}</td>
                 </tr>
+                <tr>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
-    </a>
+    </div>
 </template>
 
 
@@ -72,13 +81,13 @@
         },
         mounted() {
             this.getTraffic();
-            setInterval(this.getTraffic, 10*1000);
+            setInterval(this.getTraffic, 5*1000);
         }
     }
 </script>
 
 <style>
-    a.container {
+    div.container {
         display: flex;
         justify-content: space-evenly;
     }

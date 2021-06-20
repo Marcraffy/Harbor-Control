@@ -15,11 +15,10 @@
                      v-bind:class="{show: isExpanded}">
                     <ul class="navbar-nav flex-grow">
                         <li class="nav-item">
-                            <multiplier-buttons/>
+                            <wind-speed />
                         </li>
                         <li class="nav-item">
-                        </li>
-                        <li class="nav-item">
+                            <multiplier-buttons />
                         </li>
                     </ul>
                 </div>
@@ -51,7 +50,8 @@
     }
 </style>
 <script>
-    import MultiplierButtons from './components/MultiplierButtons.vue'
+    import MultiplierButtons from './MultiplierButtons.vue'
+    import WindSpeed from './WindSpeed.vue'
 
     export default {
         name: "NavMenu",
@@ -70,7 +70,8 @@
             }
         },
         components: {
-            MultiplierButtons
+            MultiplierButtons,
+            WindSpeed
         }
     }
 </script>

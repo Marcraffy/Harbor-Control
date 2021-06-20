@@ -26,7 +26,7 @@ namespace HarborControl.Controllers
             logger.LogInformation($"Time requested");
             return new ActionResult<Clock>(
                 new Clock {
-                    CurrentTime = clockService.CurrentTime,
+                    CurrentTime = clockService.CurrentTime.ToString("dd MMM yyyy, HH:mm"),
                     Multiplier = clockService.Multiplier
                 }
             );

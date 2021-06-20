@@ -14,11 +14,13 @@ namespace HarborControl.Traffic
             var client = new TrafficClient();
             var random = new Random();
             var vessels = new List<string>(); //Vessel Names
+            var multiplier = await client.GetMultiplierAsync();
 
             while (true)
             {
                 //Wait for a random period up to 30 seconds
-                Thread.Sleep((random.Next() % 30) * 1000);
+                var waitTime = Convert.ToInt32((random.Next() % 30 / (double)multiplier) * 1000);
+                Thread.Sleep(waitTime);
 
                 //Randomly select between arrival and departure
                 if(random.Next() % 3 != 0)
@@ -38,6 +40,7 @@ namespace HarborControl.Traffic
                     Console.WriteLine($"Adding vessel with name: {arrivingVessel}, location: {location}, and type: {type}");
                     await client.SendVessalArrivalAsync(arrivingVessel, location, type);
                     vessels.Add(arrivingVessel);
+                    multiplier = await client.GetMultiplierAsync();
                 }
                 else
                 { 
@@ -50,6 +53,7 @@ namespace HarborControl.Traffic
                     Console.WriteLine($"Removing vessel with name: {departingVessel}");
                     await client.SendVessalDepartureAsync(departingVessel);
                     vessels.Remove(departingVessel);
+                    multiplier = await client.GetMultiplierAsync();
                 }
             }
         }
