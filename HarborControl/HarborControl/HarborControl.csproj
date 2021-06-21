@@ -23,6 +23,7 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\HarborControl.Core\HarborControl.Core.csproj" />
+    <ProjectReference Include="..\HarborControl.EntityFramework\HarborControl.EntityFramework.csproj" />
     <ProjectReference Include="..\HarborControl.Interfaces\HarborControl.Interfaces.csproj" />
     <ProjectReference Include="..\HarborControl.Weather\HarborControl.Weather.csproj" />
   </ItemGroup>

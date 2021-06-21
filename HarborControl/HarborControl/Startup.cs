@@ -1,6 +1,9 @@
 using HarborControl.Core.Clock;
 using HarborControl.Core.Control;
+using HarborControl.EntityFramework;
+using HarborControl.Interfaces.Repositories;
 using HarborControl.Interfaces.Services;
+using HarborControl.Interfaces.Vessels;
 using HarborControl.Weather;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +29,8 @@ namespace HarborControl
             services.AddTransient<IWeatherService, WeatherService>()
                     .AddSingleton<IClockService, ClockService>()
                     .AddSingleton<IControlService, ControlService>()
+                    .AddDbContext<HarborControlContext>()
+                    .AddTransient<IRepository<IVessel, string>, VesselRepository>()
                     .AddControllers();
 
             services.AddSpaStaticFiles(configuration =>
