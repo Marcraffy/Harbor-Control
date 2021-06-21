@@ -20,6 +20,9 @@ namespace HarborControl.Controllers
             this.clockService = clockService;
         }
 
+        /// <summary>
+        /// Get current time and time multiplier
+        /// </summary>
         [HttpGet]
         public ActionResult<Clock> Get()
         {
@@ -32,6 +35,10 @@ namespace HarborControl.Controllers
             );
         }
 
+        /// <summary>
+        /// Change multiplier
+        /// </summary>
+        /// <param name="multiplier">any integer value between 1 and 16 inclusive</param>
         [HttpPost]
         public ActionResult Post([FromQuery] int multiplier)
         {

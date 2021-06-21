@@ -18,6 +18,10 @@ namespace HarborControl.Controllers
             this.weatherService = weatherService;
         }
 
+        /// <summary>
+        /// Get current wind speed
+        /// </summary>
+        /// <returns>Windspeed in KM/H</returns>
         [HttpGet]
         public ActionResult<float> Get()
         {

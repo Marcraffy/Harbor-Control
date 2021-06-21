@@ -19,7 +19,11 @@ namespace HarborControl.Controllers
             this.logger = logger;
             this.controlService = controlService;
         }
-
+        
+        /// <summary>
+        /// Get current state of Queue
+        /// </summary>
+        /// <returns>TrafficState which contains an array of vessels waiting at the harbour, an array of vessels waiting at the perimeter, and a vessel traversing the perimeter if there is one.</returns>
         [HttpGet]
         public ActionResult<TrafficState> Get()
         {
@@ -34,6 +38,13 @@ namespace HarborControl.Controllers
             return new ActionResult<TrafficState>(output);
         }
 
+
+        /// <summary>
+        /// Add a vessel to the queue
+        /// </summary>
+        /// <param name="name">Name of vessel (must be unique)</param>
+        /// <param name="location">Location of vessel: Either 0 - Perimeter or 1 - Harbor</param>
+        /// <param name="type">Type of vessel: Either 0 - Cargoship, 1 - Sailboat or 2 - Speedboat</param>
         [HttpPost]
         public ActionResult Post([FromQuery] string name, [FromQuery] Location location, [FromQuery] VesselType type)
         {
@@ -47,6 +58,11 @@ namespace HarborControl.Controllers
             return new OkResult();
         }
 
+        /// <summary>
+        /// Remove a vessel from the queue
+        /// </summary>
+        /// <param name="name">Name of vessel in the queue</param>
+        /// <returns></returns>
         [HttpDelete]
         public ActionResult Delete([FromQuery] string name)
         {
