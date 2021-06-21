@@ -1,20 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace HarborControl.EntityFramework
 {
     public class HarborControlContext : DbContext
     {
-        private readonly string connectionString;
-
-        public HarborControlContext(IConfiguration configuration)
+        public HarborControlContext(DbContextOptions<HarborControlContext> options)
+            : base(options)
         {
-            connectionString = configuration.GetConnectionString("SQL");
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(connectionString);
         }
 
         public DbSet<Vessel> Vessels { get; set; }

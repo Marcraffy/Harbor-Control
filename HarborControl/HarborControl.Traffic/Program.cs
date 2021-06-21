@@ -11,6 +11,8 @@ namespace HarborControl.Traffic
     {
         static async Task Main()
         {
+            Thread.Sleep(30 * 1000);
+
             var client = new TrafficClient();
             var random = new Random();
             var vessels = new List<string>(); //Vessel Names

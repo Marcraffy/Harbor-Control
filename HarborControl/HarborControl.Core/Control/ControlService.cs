@@ -1,6 +1,7 @@
 ﻿using HarborControl.Core.Exceptions;
 using HarborControl.Core.Vessels;
 using HarborControl.Interfaces.Enums;
+using HarborControl.Interfaces.Repositories;
 using HarborControl.Interfaces.Services;
 using HarborControl.Interfaces.Vessels;
 using System;
@@ -13,13 +14,16 @@ namespace HarborControl.Core.Control
     {
         private readonly IClockService clockService;
         private readonly IWeatherService weatherService;
+        private readonly IRepository<IVessel, string> vesselRepository;
         private readonly Queue<IVessel> vessels;
 
         public ControlService(IClockService clockService,
-                                IWeatherService weatherService)
+                                IWeatherService weatherService,
+                                IRepository<IVessel, string> context)
         {
             this.clockService = clockService;
             this.weatherService = weatherService;
+            this.vesselRepository = context;
             vessels = new Queue<IVessel>();
         }
 
@@ -79,6 +83,7 @@ namespace HarborControl.Core.Control
             };
 
             vessels.Enqueue(vessel);
+            vesselRepository.Create(vessel);
         }
 
         public void VesselDeptarted(string name)
@@ -111,6 +116,7 @@ namespace HarborControl.Core.Control
                 default:
                     throw new ControlException("Location not found");
             }
+            vesselRepository.Delete(name);
         }
 
         private void DequeueTransitVessel(string name)
@@ -144,6 +150,7 @@ namespace HarborControl.Core.Control
             vessel.TransitStart = clockService.CurrentTime;
 
             vessels.Enqueue(vessel);
+            vesselRepository.Update(vessel);
         }
 
         private void DequeueVessel(string name)

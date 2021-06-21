@@ -19,7 +19,7 @@ namespace HarborControl.EntityFramework
 
         public void Create(IVessel entity)
         {
-            if (context.Vessels.Any(vessel => StringEquals(vessel.Name, entity.Name)))
+            if (context.Vessels.Any(vessel => vessel.Name == entity.Name))
             {
                 throw new ArgumentException("Name cannot match an existing name");
             }
@@ -84,12 +84,12 @@ namespace HarborControl.EntityFramework
 
         public void Update(IVessel entity)
         {
-            if (!context.Vessels.Any(vessel => StringEquals(vessel.Name, entity.Name)))
+            if (!context.Vessels.Any(vessel => vessel.Name == entity.Name))
             {
                 throw new ArgumentException("Name must match an existing name");
             }
 
-            var vessel = context.Vessels.First(vessel => StringEquals(vessel.Name, entity.Name));
+            var vessel = context.Vessels.First(vessel => vessel.Name == entity.Name);
 
             vessel.Location = vessel.Location;
             vessel.TransitStart = vessel.TransitStart;

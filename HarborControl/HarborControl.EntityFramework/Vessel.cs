@@ -6,6 +6,8 @@ namespace HarborControl.EntityFramework
 {
     public sealed class Vessel : IVessel
     {
+        public Vessel() { }
+
         public Vessel(IVessel vessel)
         {
             Name = vessel.Name;

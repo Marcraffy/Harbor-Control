@@ -7,6 +7,7 @@ using HarborControl.Interfaces.Vessels;
 using HarborControl.Weather;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,10 +27,11 @@ namespace HarborControl
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IWeatherService, WeatherService>()
+            services.AddDbContext<HarborControlContext>(options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("SQL")))
+                    .AddTransient<IWeatherService, WeatherService>()
                     .AddSingleton<IClockService, ClockService>()
-                    .AddSingleton<IControlService, ControlService>()
-                    .AddDbContext<HarborControlContext>()
+                    .AddTransient<IControlService, ControlService>()
                     .AddTransient<IRepository<IVessel, string>, VesselRepository>()
                     .AddControllers();
 
