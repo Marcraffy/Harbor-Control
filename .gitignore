@@ -18,3 +18,5 @@
 /HarborControl/HarborControl.Traffic/obj
 /HarborControl/HarborControl.Weather/bin/Debug/net5.0
 /HarborControl/HarborControl/bin/Debug/net5.0
+/HarborControl/HarborControl.EntityFramework/bin/Debug/net5.0
+/HarborControl/HarborControl.EntityFramework

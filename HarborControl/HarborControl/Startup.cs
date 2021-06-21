@@ -32,6 +32,8 @@ namespace HarborControl
             {
                 configuration.RootPath = "ClientApp";
             });
+
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +47,9 @@ namespace HarborControl
             app.UseRouting();
             app.UseSpaStaticFiles();
             app.UseAuthorization();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseEndpoints(endpoints =>
             {
