@@ -1,5 +1,9 @@
 # Harbor Control
 
+## To Run:
+ - Start HarborControl asp.net host.
+ - Start HarborControl.Traffic / interact over API
+
 The Durban harbor control requires a concurrency safe application that will help the staff control the
 flow of boats and ships into the harbor.
 
