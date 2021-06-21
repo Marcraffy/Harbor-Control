@@ -6,7 +6,18 @@ namespace HarborControl.EntityFramework
 {
     public sealed class Vessel : IVessel
     {
-        public int Id { get; init; }
+        public Vessel(IVessel vessel)
+        {
+            Name = vessel.Name;
+            Speed = vessel.Speed;
+            Type = vessel.Type;
+            Location = vessel.Location;
+            Direction = vessel.Direction;
+            Arrival = vessel.Arrival;
+            TransitStart = vessel.TransitStart;
+        }
+
+        public int Id { get; set; }
 
         public string Name { get; init; }
 

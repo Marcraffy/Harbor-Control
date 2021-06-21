@@ -1,5 +1,4 @@
-﻿using HarborControl.Interfaces.Vessels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace HarborControl.EntityFramework
@@ -18,6 +17,6 @@ namespace HarborControl.EntityFramework
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public DbSet<IVessel> Vessels { get; set; }
+        public DbSet<Vessel> Vessels { get; set; }
     }
 }
